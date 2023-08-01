@@ -16,7 +16,8 @@ Flag `-fmodules-ts` allows the use of modules in the project.
 Flag `-xc++-system-header` causes the system library to be compiled.
 Flags `-Wall -Wextra -Werror -pedantic -Wconversion` they make the compiler pickier which in turn makes you write better code
 Flag `-O3` this is the level of optimization that is performed on the program
-Flags `-lstdc++ -ggdb3` add system libraries to the program.
+Flag `-lstdc++` add system libraries to the program.
+Flag `-ggdb3` add debuging options
 
 `export LD_LIBRARY_PATH="/usr/local/lib64/:$LD_LIBRARY_PATH` in my compiler version of gcc i have a problem that gcc don't know where that libraries are this command set their location.
 

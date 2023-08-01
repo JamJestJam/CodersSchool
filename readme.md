@@ -1,0 +1,1 @@
+# There are my assignments from the coders school course 

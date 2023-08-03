@@ -13,11 +13,11 @@ set(FLAGS_SYSTEM -std=c++23 -fmodules-ts -xc++-system-header)
 #add_custom_command(
 #  OUTPUT doNotReadMe.txt
 #  DEPENDS ${NAME}
-#  COMMAND gcc -std=c++23 -fmodules-ts -xc++-system-header iostream
+#  COMMAND g++ -std=c++23 -fmodules-ts -xc++-system-header iostream
 #  WORKING_DIRECTORY ${CMAKE_CURENT_BINARY_DIR}
 #  )
 
-#execute_process(COMMAND /usr/bin/gcc -std=c++20 -fmodules-ts -xc++-system-header iostream)
+#execute_process(COMMAND /usr/bin/g++ -std=c++20 -fmodules-ts -xc++-system-header iostream)
 
 add_executable(${NAME} main.cpp)
 target_compile_options(${NAME} PRIVATE ${FLAGS})

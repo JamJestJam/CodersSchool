@@ -27,12 +27,12 @@ arrow **`←`** or **`h`** - move one char left
 ### Text operations
 
 **`dd`** - delete line
+you can combine this operations with movement for example **d3j** delete 3 lines of code from cursor to down
 **`yy`** - copy line
 **`p`** - paste line under cursor
 **`P`** - paste line in the same line that is cursor
 **`u`** - undo changes
 **`Ctrl + r`**  - redo changes
-you can combine this operations with movement for example **d3j** delete 3 lines of code from cursor to down
 
 ### Text operations in visual mode
 

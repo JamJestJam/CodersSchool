@@ -118,5 +118,44 @@ and you can set **CXX_STANDARD_REQUIRED ON** to forced c++ version.
 
 **`CMAKE_CXX_STANDARD`** - storage base c++ version (if not specify this version will be used).
 
-**`CMAKE_CXX_STANDARD_REQUIRED`** - storage variable **ON** or **OFF**. Its forced usage of **CMAKE_CXX_STANDARD**.
+**`CMAKE_CXX_STANDARDKE_CXX_STANDARD_REQUIRED`** - storage variable **ON** or **OFF**. Its forced usage of **CMAKE_CXX_STANDARD**.
 
+## DEBUGGERS
+
+### Commands GDB
+
+**`gdb <file>`** - open a GDB debugger for a file
+
+**`run`** - run program
+
+**`list / l`** - show code around current position
+
+**`break / b <file>:<line number>`** - create breakpoint in file and line
+
+**`print / p <value>`** - show value of <value>
+
+**`tui enable`** - show GUI version compiler
+
+**`next / n`** - go to the next line
+
+**`step / s`** - go into function
+
+**`finish / f`** - finish function 
+
+**`continue / c`** - go to next break point
+
+**`set variable <name> <value>`** - set value of variable <name> to <value>
+
+**`catch throw`** - show where are unhandled thrown exceptions
+
+**`up`** - go up in stock
+
+**`down`** - go down in stock
+
+**`watch <name>`** - break every time variable <name> change 
+
+### Valgrind ASan
+
+**`valgrind <name>`** - run valgrind of program
+
+To use ASan you need to add a flag **`-fsanitize=<option>`** to your compiler options

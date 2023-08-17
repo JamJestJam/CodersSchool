@@ -112,7 +112,7 @@ and you can set **CXX_STANDARD_REQUIRED ON** to forced c++ version.
 
 ### CMAKE variables
 
-**`${PROJECT_NAME}** - name of project
+**`${PROJECT_NAME}`** - name of project
 
 **`CMAKE_CXX_COMPILER`** - storage name of the compiler. RECOMMENDED TO NOT USE.
 

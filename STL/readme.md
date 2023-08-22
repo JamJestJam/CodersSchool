@@ -93,6 +93,11 @@ int main() {
 
 ### Summary
 
+| Command | Description |
+| --- | --- |
+| git status | List all new or modified files |
+| git diff | Show file differences that haven't been staged |
+
 | Lp | Type | Catch friendly | Dynamic size | Mode of action | Time to access random element | time to add |
 | --- | --- | --- | --- | --- |
 | 0 | array | yes | no | array | Pss | N/O |

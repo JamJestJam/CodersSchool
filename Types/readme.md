@@ -46,7 +46,7 @@ Access to a element of the table is by using **`<name>[element id]`** where <nam
 
 Enum is an enumeration type, its task is to limit the possibility of entering a value for example when you want to show a error type etc.
 
-`
+```
 enum class ErrorCode {
     NotFound
     AuthorizationRequired
@@ -55,18 +55,18 @@ enum class ErrorCode {
 };
 
 ErrorCode code = ErrorCode.NotFound;
-`
+```
 
 # Reference
 
 Reference allow you to create another name to the same space in the memory for example if you use
-`
+```
 int a = 2;
 int& b = a;
 int& c = b;
 
 c = c+b;
-`
+```
 then variables a, b, c will point to the same space in memory and their finally value will be 4.
 
 The reference is using every time when you don't want to copy data but send only address to value. 
@@ -91,20 +91,20 @@ Constant pointer to constant - **`const <type>* const <name>`** if you use that 
 
 You should always check if a reference is a `nullptr` and if it is you mustn't do any actions on it.
 You can check it like this;
-`
+```
 int* a = nullptr;
 if(!a) {
     // do stuff to initialize a or throw an exception
 }
 
 // do anything else
-`
+```
 
 If you do something like that.
-`
+```
 int* a = nullptr;
 std::cout << *a;
-`
+```
 then you have undefined behavior and you don't know what can happened. 
 
 A good practise in c++ is to never use `new` and `delete` in your code you should always you smart pointers.

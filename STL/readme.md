@@ -11,7 +11,7 @@ Vector is a dynamic array that allows you to change its length at runtime.
 Vector is catch friendly.
 
 Most popular actions that can be do on the vector.
-`
+```
 #include <vector>
 
 std::vector<double> emptyVector; // initialize vector without data
@@ -25,7 +25,7 @@ int main() {
     int first = numbers.front(); // get first element in vector
     int last = numbers.back(); // get last element in vector
 }
-`
+```
 
 [more info](https://en.cppreference.com/w/cpp/container/vector)
 
@@ -36,7 +36,7 @@ You can add elements with every space in list in the same time.
 To get n element you need to enumerate from first to n.
 
 Simple code wit list
-`
+```
 #include <list>
 
 std::listdouble> emptyVector; // initialize list without data
@@ -58,7 +58,7 @@ int main() {
     }
     auto result = *element; // get value of n element in list
 }
-`
+```
 
 [more info](https://en.cppreference.com/w/cpp/container/list)
 
@@ -67,7 +67,7 @@ int main() {
 Map is a structure that contains keys and values and you can get access to value by passing a key.
 
 Simple code with map
-`
+```
 #include <list>
 #include <string>
 
@@ -87,7 +87,7 @@ int main() {
     bool empty = day_of_week.empty(); // check if map is empty
     size_t size = day_of_week.size(); // get size of map
 }
-`
+```
 
 [more info](https://en.cppreference.com/w/cpp/container/map)
 
@@ -104,7 +104,7 @@ int main() {
 ### Foreach loop
 
 Old way to loop for every element in container:
-`
+```
 for(auto i = container.begin(); i != container.end(); ++i) {
     auto element = *i;
     // do sth.
@@ -115,6 +115,5 @@ New way to do the same
 for(auto element : container) {
     // do sth
 }
-`
-
+```
 

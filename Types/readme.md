@@ -26,7 +26,7 @@
     <td>true or false</td>
   </tr>
   <tr>
-    <td colspan="3">Integers</td>
+    <td colspan="4" style="text-align: center;">Integers</td>
   </tr>
   <tr>
     <td>4</td>
@@ -77,7 +77,7 @@
     <td>from 0 to 18 446 744 073 709 551 615</td>
   </tr>
   <tr>
-    <td colspan="3">Floating point number</td>
+    <td colspan="4" style="text-align: center;">Floating point number</td>
   </tr>
   <tr>
     <td>12</td>
@@ -98,7 +98,7 @@
     <td>15 decimal digits precision</td>
   </tr>
   <tr>
-    <td colspan="3">Strings</td>
+    <td colspan="4" style="text-align: center;">Strings</td>
   </tr>
   <tr>
     <td>15</td>

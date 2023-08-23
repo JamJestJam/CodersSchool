@@ -98,7 +98,7 @@
     <td>15 decimal digits precision</td>
   </tr>
   <tr>
-    <td colspan="4" style="text-align: center;">Strings</td>
+    <td colspan="4" align="center">Strings</td>
   </tr>
   <tr>
     <td>15</td>

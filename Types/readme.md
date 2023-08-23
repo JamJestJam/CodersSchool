@@ -5,7 +5,7 @@
 |1|void|-|-|
 |2|*|in 32bit 4bajt, in 64 8bajt|address in memory|
 |3|bool|1|true or false|
-<td colspan=4>Integers</td>
+<tr><td colspan=4>Integers</td></tr>
 |4|short|2|from -32 768 to 32 767|
 |5|unsigned short|2|from 0 to 65 535|
 |6|int|2|from -32 768 to 32 767|
@@ -14,11 +14,11 @@
 |9|unsigned long|4|from 0 to 4 294 967 295|
 |10|long long|4|from -9 223 372 036 854 775 808 to 9 223 372 036 854 775 807|
 |11|unsigned long long|4|from 0 to 18 446 744 073 709 551 615|
-<td colspan=4>Floating point number</td>
+<tr><td colspan=4>Floating point number</td></tr>
 |12|float|4|7 decimal digits precision|
 |13|double|8|15 decimal digits precision|
 |14|long double|8 but often 10|15 decimal digits precision|
-<td colspan=4>Strings</td>
+<tr><td colspan=4>Strings</td></tr>
 |15|char|1|from -128 to 127|
 |16|unsigned char|1|from 0 to 255|
 |17|sign char|1|from -128 to 127|

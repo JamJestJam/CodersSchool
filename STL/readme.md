@@ -93,16 +93,12 @@ int main() {
 
 ### Summary
 
-| Lp | Type | Catch friendly | Dynamic size | Time to access random element | Time to add element |
+| Lp | Type | Cache friendly | Dynamic size | Time to access random element | Time to add element |
 | --- | --- | --- | --- | --- | --- |
 | 0 | array | yes | no | N/O | N/O |
 | 1 | vector | yes | yes | N/O | N/O |
-
-| Lp | Type | Catch friendly | Dynamic size | Mode of action | Time to access random element | time to add |
-| --- | --- | --- | --- | --- |
-| 0 | array | yes | no | array | Pss | N/O |
-| 1 | vector | yes | yes | array | Pss | Pss | 
-| 2 | list | no | yes | double linked list | Pss | Pss |
+| 2 | list | no | yes | N/O | N/O |
+| 3 | map | yes | yes | N/O | N/O |
 
 ## Functions
 

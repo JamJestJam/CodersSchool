@@ -1,31 +1,129 @@
 # Basic types in c++
 
-|LP|Name|Min size [bajt]|Min value range|
-|---|---|---|---|
-|1|void|-|-|
-|2|*|in 32bit 4bajt, in 64 8bajt|address in memory|
-|3|bool|1|true or false|
-|Integers|
-|4|short|2|from -32 768 to 32 767|
-|5|unsigned short|2|from 0 to 65 535|
-|6|int|2|from -32 768 to 32 767|
-|7|unsigned int|2|from 0 to 65 535|
-|8|long|4|from -2 147 483 648 to 2 147 483 647|
-|9|unsigned long|4|from 0 to 4 294 967 295|
-|10|long long|4|from -9 223 372 036 854 775 808 to 9 223 372 036 854 775 807|
-|11|unsigned long long|4|from 0 to 18 446 744 073 709 551 615|
-|Floating point number|
-|12|float|4|7 decimal digits precision|
-|13|double|8|15 decimal digits precision|
-|14|long double|8 but often 10|15 decimal digits precision|
-|Strings|
-|15|char|1|from -128 to 127|
-|16|unsigned char|1|from 0 to 255|
-|17|sign char|1|from -128 to 127|
-|18|string|||
-
 <table>
-<tr><td>Lp</td><td>Name</td></tr>
+  <tr>
+    <th>LP</th>
+    <th>Name</th>
+    <th>Min size [bajt]</th>
+    <th>Min value range</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>void</td>
+    <td>-</td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>*</td>
+    <td>in 32bit 4bajt, in 64 8bajt</td>
+    <td>address in memory</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>bool</td>
+    <td>1</td>
+    <td>true or false</td>
+  </tr>
+  <tr>
+    <td colspan="3">Integers</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>short</td>
+    <td>2</td>
+    <td>from -32 768 to 32 767</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>unsigned short</td>
+    <td>2</td>
+    <td>from 0 to 65 535</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>int</td>
+    <td>2</td>
+    <td>from -32 768 to 32 767</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>unsigned int</td>
+    <td>2</td>
+    <td>from 0 to 65 535</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>long</td>
+    <td>4</td>
+    <td>from -2 147 483 648 to 2 147 483 647</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>unsigned long</td>
+    <td>4</td>
+    <td>from 0 to 4 294 967 295</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>long long</td>
+    <td>4</td>
+    <td>from -9 223 372 036 854 775 808 to 9 223 372 036 854 775 807</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td>unsigned long long</td>
+    <td>4</td>
+    <td>from 0 to 18 446 744 073 709 551 615</td>
+  </tr>
+  <tr>
+    <td colspan="3">Floating point number</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td>float</td>
+    <td>4</td>
+    <td>7 decimal digits precision</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td>double</td>
+    <td>8</td>
+    <td>15 decimal digits precision</td>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td>long double</td>
+    <td>8 but often 10</td>
+    <td>15 decimal digits precision</td>
+  </tr>
+  <tr>
+    <td colspan="3">Strings</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>char</td>
+    <td>1</td>
+    <td>from -128 to 127</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td>unsigned char</td>
+    <td>1</td>
+    <td>from 0 to 255</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td>sign char</td>
+    <td>1</td>
+    <td>from -128 to 127</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td>string</td>
+    <td></td>
+    <td></td>
+  </tr>
 </table>
 
 You can also use alias of types for example **`size_t`** which represents size of something.

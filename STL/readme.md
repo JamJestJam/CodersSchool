@@ -5,102 +5,70 @@ You should always use it.
 
 ## Containers
 
-### Vector
+### Base info
 
-Vector is a dynamic array that allows you to change its length at runtime.
-Vector is catch friendly.
+Cache friendly - thats mean container's data is arranged that every element is near each other<br />
+Dynamic size - cointainer can change its size<br />
+CC access random element - computation complexity to access a random element<br />
+CC add element - computation complexity to add element<br />
 
-Most popular actions that can be do on the vector.
-```
-#include <vector>
+| Type      | Cache friendly    | Dynamic size  | CC access random element  | CC add element    |
+| ---       | ---               | ---           | ---                       | ---               |
+| array     | yes               | no            | N/O                       | N/O               |
+| vector    | yes               | yes           | N/O                       | N/O               |
+| list      | no                | yes           | N/O                       | N/O               |
+| map       | no                | yes           | N/O                       | N/O               |
 
-std::vector<double> emptyVector; // initialize vector without data
-std::vector<int> numbers {1, 2, 3, 4}; // initialize vector with data
-std::vector<char> chars = {'a', 'b', 'c'}; // another way to initialize vector with data
+### Function element access
 
-int main() {
-    numbers.push_back(6); // add new item to the vector
-    numbers = {1, 2, 3}; // replace old vector with new.
-    int n = numbers[1]; // get element from vector
-    int first = numbers.front(); // get first element in vector
-    int last = numbers.back(); // get last element in vector
-}
-```
+operator[] - this allows you to access the data using the [] operator by typing the data key inside<br />
+front - its give first element in container<br />
+back - its give last element in container<br />
+at - get element by its position in container<br />
 
-[more info](https://en.cppreference.com/w/cpp/container/vector)
+| Type      | operator[]    | front     | back  | at    | 
+| ---       | ---           | ---       | ---   | ---   |
+| array     | true          | true      | true  | true  |
+| vector    | true          | true      | true  | true  |
 
-### List
+### Function literators
 
-List is a dynamic double connected list. (you can literate from front and from back)
-You can add elements with every space in list in the same time.
-To get n element you need to enumerate from first to n.
+begin - get first literator<br />
+end - get last literator<br />
+rbegin - get first reverse literator<br />
+rend - get last reverse literator<br />
 
-Simple code wit list
-```
-#include <list>
+| Type      | begin | end   | rbegin    | rend  |
+| ---       | ---   | ---   | ---       | ---   |
+| array     | true  | true  | true      | true  |
+| vector    | true  | true  | true      | true  |
 
-std::listdouble> emptyVector; // initialize list without data
-std::list<int> numbers {1, 2, 3, 4}; // initialize list with data
-std::list<char> chars = {'a', 'b', 'c'}; // another way to initialize list with data
+### Function capasity
 
-int main() {
-    numbers.push_back(6); // add new item to the list
-    numbers.push_front(3); // add new item to the list at the beginning
-    numbers = {1, 2, 3}; // replace old list with new.
-    int first = numbers.front(); // get first element in vector
-    int last = numbers.back(); // get last element in vector
+empty - check if container is empty<br />
+size - check container's size<br />
+max_size - check container max posible size<br />
+reverse - reverse storage elements<br />
+capacity - show container allocated size<br />
+shrink_to_fit - shrink allocated size to elements size<br />
 
-    int n = 3;
-    // get n element from list
-    auto element = list.begin(); // get literator to first element
-    for(size_t i = 0; i < n; i++) { // n times loop
-        ++element; // go to next element.
-    }
-    auto result = *element; // get value of n element in list
-}
-```
+| Type      | empty | size  | max_size  | reverse   | capacity  | shrink_to_fit |
+| ---       | ---   | ---   | ---       | ---       | ---       | ---           |
+| array     | true  | true  | true      | false     | false     | false         |
+| vector    | true  | true  | true      | true      | true      | true          |
 
-[more info](https://en.cppreference.com/w/cpp/container/list)
+### Function modiflers
 
-### Map
+fill - assign container's values<br />
+swap - change container's value<br />
+clear - clear container's value<br />
 
-Map is a structure that contains keys and values and you can get access to value by passing a key.
 
-Simple code with map
-```
-#include <list>
-#include <string>
+| Type  | fill  | swap  |
+| ---   | ---   | ---   |
+| true  | true  | true  |
 
-std::map<unsigned short, std::string> day_of_week = {
-    {1, "Monday"},
-    {2, "Tuesday"},
-    {3, "Wednesday"},
-    {4, "Thursday"},
-    {5, "Friday"},
-    {6, "Saturday"},
-    {7, "Sunday"}
-};
-
-int main() {
-    auto day_name = day_of_week[2]; // get element from map
-    day_of_week.insert({8, "new day name"}); // insert new element to map.
-    bool empty = day_of_week.empty(); // check if map is empty
-    size_t size = day_of_week.size(); // get size of map
-}
-```
-
-[more info](https://en.cppreference.com/w/cpp/container/map)
-
-### Summary
-
-| Lp | Type | Cache friendly | Dynamic size | Time to access random element | Time to add element |
-| --- | --- | --- | --- | --- | --- |
-| 0 | array | yes | no | N/O | N/O |
-| 1 | vector | yes | yes | N/O | N/O |
-| 2 | list | no | yes | N/O | N/O |
-| 3 | map | yes | yes | N/O | N/O |
-
-## Functions
+## Funtions
 
 ### Foreach loop
 
@@ -108,11 +76,11 @@ Old way to loop for every element in container:
 ```
 for(auto i = container.begin(); i != container.end(); ++i) {
     auto element = *i;
-    // do sth.
+    // do sth
 }
-`
+```
 New way to do the same
-`
+```
 for(auto element : container) {
     // do sth
 }

@@ -156,6 +156,7 @@ you can also use iterators with `c` before its name then iterator is constant
 `sort` - sort container
 
 | Type          | `merge`   | `splice`  | `splice_after`    | `remove`  | `remove_if`   | `reverse` | `unique`  | `sort`        |
+| :---:         | :---:     | :---:     | :---:             | :---:     | :---:         | :---:     | :---:     | :---:         |
 | array         | ---       | ---       | ---               | ---       | ---           | ---       | ---       | ---           |
 | vector        | ---       | ---       | ---               | ---       | ---           | ---       | ---       | ---           |
 | list          | O(n)+O(m) | O(1)      | ---               | O(n)      | O(n)*p        | O(n)      | O(n)      | O(n*log n)    |

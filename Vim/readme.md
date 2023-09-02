@@ -15,8 +15,8 @@
 
 ### Movement command
 
-**`gg`** - move to the top of file
-**`GG`** - move to the end of file
+**`gg`** - Move to the top of the file
+**`GG`** - Move to the end of the file
 **`{number} + gg`** or **`{number} + G`** - moves to line
 arrow **`↑`** or **`k`** - move line up
 arrow **`↓`** or **`j`** - move line down
@@ -27,10 +27,10 @@ arrow **`←`** or **`h`** - move one char left
 ### Text operations
 
 **`dd`** - delete line
-you can combine this operations with movement for example **d3j** delete 3 lines of code from cursor to down
+You can combine this operation with the movement for example **d3j** deletes 3 lines of code from the cursor down
 **`yy`** - copy line
 **`p`** - paste line under cursor
-**`P`** - paste line in the same line that is cursor
+**`P`** - Paste the line in the same line that is the cursor
 **`u`** - undo changes
 **`Ctrl + r`**  - redo changes
 
@@ -43,6 +43,6 @@ you can combine this operations with movement for example **d3j** delete 3 lines
 ### Finding in text
 
 **`/ {text}`** or **`? {text}`** - finding in file text.
-**`n`** - move to next found element.
-**`N`** - move to prev found element.
+**`n`** - move to the next found element.
+**`N`** - Move to prev found element.
 **`:%s/{old}/{new}/g`** - replace old phrase with new phrase in file

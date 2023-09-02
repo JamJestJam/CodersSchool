@@ -1,4 +1,4 @@
-# Basic types in c++
+# Basic types in C++
 
 <table>
   <tr>
@@ -126,27 +126,27 @@
   </tr>
 </table>
 
-You can also use alias of types for example **`size_t`** which represents size of something.
-Aliases are create using keyword using for example **`using fraction = double`**.
+You can also use the alias of types for example **`size_t`** which represents the size of something.
+Aliases are created using keyword using for example **`using fraction = double`**.
 
-You should use "auto" type wherever possible.
+You should use the "auto" type wherever possible.
 
 # Heap and stock
 
-Memory is divided into two groups Heap and stock. All dynamically created variables are on the heap, anything else are in stock.
-Every time you change scope (for example run a function, loop or if segment) you also change stock. Scope is defined by using `{ }` brackets.
-You can have reference to a memory in heap but also to stock.
-To create dynamic variable you should use pointer.
+Memory is divided into two groups Heap and stock. All dynamically created variables are on the heap, anything else is in stock.
+Every time you change scope (for example run a function, loop, or segment) you also change stock. Scope is defined by using `{ }` brackets.
+You can have reference to a memory in the heap but also to stock.
+To create a dynamic variable you should use a pointer.
 
 # Arrays
 
-You can create a array by using **`<type> <name>[<size>]`** where <type> is type of array <name> is name of the variable and size is size of table.
+You can create an array by using **`<type> <name>[<size>]`** where <type> is a type of array <name> is the name of the variable and size is the size of the table.
 
 Access to a element of the table is by using **`<name>[element id]`** where <name> is name of the variable and <element id> is a elements number
 
 # Enums
 
-Enum is an enumeration type, its task is to limit the possibility of entering a value for example when you want to show a error type etc.
+Enum is an enumeration type, its task is to limit the possibility of entering a value for example when you want to show an error type, etc.
 
 ```
 enum class ErrorCode {
@@ -161,7 +161,7 @@ ErrorCode code = ErrorCode.NotFound;
 
 # Reference
 
-Reference allow you to create another name to the same space in the memory for example if you use
+Reference allows you to create another name for the same space in the memory for example if you use
 ```
 int a = 2;
 int& b = a;
@@ -169,26 +169,26 @@ int& c = b;
 
 c = c+b;
 ```
-then variables a, b, c will point to the same space in memory and their finally value will be 4.
+then variables a, b, and c will point to the same space in memory and their final value will be 4.
 
-The reference is using every time when you don't want to copy data but send only address to value. 
-Reference take the same space as pointer (in 32bit processors 4bajt, 64bit 8)
-For example when you use a very long array, copying it may take a long time, instead you can use a reference and not copy it, 
-in this case it is worth adding the keyword **`const`** in the function parameter so that you don't accidentally change the contents of the array 
+The reference is used whenever you don't want to copy data but send only the address to value. 
+The reference takes the same space as a pointer (in 32bit processors 4bajt, 64bit 8)
+For example, when you use a very long array, copying it may take a long time, instead you can use a reference and not copy it, 
+In this case, it is worth adding the keyword **`const`** in the function parameter so that you don't accidentally change the contents of the array 
 if such behavior is not expected.
 
 # Pointers
 
-Pointer is a pointer to a given address in memory
+A pointer is a pointer to a given address in memory
 
 To create a pointer you have to add a **`*`** after a type name for example **`int* number`**.
 
-To read value from a pointer you have to add a **`*`** before a name of variable for example **`cout << *number;`**
+To read the value from a pointer you have to add a **`*`** before the name of the variable for example **`cout << *number;`**
 
-Pointers are tricky when its comes to **'consts'** there are two types of const when you use a pointers.
-Constant pointer - **`<type>* const <name>`** if you use that you can't change variable's value.
-Pointer to constant - **`const <type>* <name>`** if you use that you can't change pointer memory address.
-Constant pointer to constant - **`const <type>* const <name>`** if you use that you can't change value or address.
+Pointers are tricky when it comes to **'consts'** There are two types of const when you use pointers.
+Constant pointer - **`<type>* const <name>`** If you use that you can't change the variable's value.
+Pointer to constant - **`const <type>* <name>`** If you use that you can't change the pointer memory address.
+Constant pointer to constant - **`const <type>* const <name>`** If you use that you can't change value or address.
 
 
 You should always check if a reference is a `nullptr` and if it is you mustn't do any actions on it.
@@ -207,7 +207,6 @@ If you do something like that.
 int* a = nullptr;
 std::cout << *a;
 ```
-then you have undefined behavior and you don't know what can happened. 
+then you have undefined behavior and you don't know what can happen. 
 
-A good practise in c++ is to never use `new` and `delete` in your code you should always you smart pointers.
-
+A good practice in C++ is to never use `new` and `delete` in your code you should always you smart pointers.

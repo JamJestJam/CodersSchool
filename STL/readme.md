@@ -584,9 +584,9 @@ std::min(4, 2); // 2
 std::minmax(4, 2); // first = 2; second = 4;
 
 // If the first value is between the second and third then return first if is smaller return the second else return third 
-std::clang(25, 0, 100); // 25
-std::clang(-50, 0, 100); // 0
-std::clang(420, 0, 100); // 100
+std::clamp(25, 0, 100); // 25
+std::clamp(-50, 0, 100); // 0
+std::clamp(420, 0, 100); // 100
 ```
 
 ### Working on containers
@@ -679,7 +679,7 @@ std::transform_reduce(std::execution::unseq, begin(a), end(a), begin(b), 0, minu
 
 `O` - procedure complexity
 
-| Algorithm                 | Worst_posible_complexity                  | Description 
+| Algorithm                 | Worst_possible_complexity                 | Description 
 | ---                       | :---:                                     | ---         
 | all_of                    | $O*m$                                     | Checks whether all elements in the range satisfy the predicate. 
 | any_f                     | $O*m$                                     | Checks if any of the elements in the range satisfies the predicate
@@ -730,7 +730,7 @@ std::transform_reduce(std::execution::unseq, begin(a), end(a), begin(b), 0, minu
 | is_partitioned            | $m$                                       | Check if the given range is partitioned. That is, can the range be divided into two parts, the first where the elements satisfy the given predicate and the second where the elements do not satisfy the given predicate.
 | partition                 | $m+O*(m/2)$                               | Partitions the given range. Arranges the elements in such an order that first there are elements that satisfy the given predicate and then those that do not and return iterator to first element in second part.
 | partition_point           | $O*\log m$                                | Gets an iterator over the first element that does not satisfy the predicate. It only works on a partitioned range
-| stable_partition          | $m+O*(m*\log m)                           | Partitions the given range. Arranges the elements in such an order that first there are elements that satisfy the given predicate and then those that do not and return iterator to first element in second part. Ensures that the relative order of the elements does not change
+| stable_partition          | $m+O*(m*\log m)$                          | Partitions the given range. Arranges the elements in such an order that first there are elements that satisfy the given predicate and then those that do not and return iterator to first element in second part. Ensures that the relative order of the elements does not change
 | partition_copy            | $m$                                       | Partitions the given first range. Arranges the elements in such an order that first there are elements that satisfy the given predicate and then those that do not and return iterator to first element in second part and save results to second range. 
 | is_sorted                 | $m$                                       | Check if elements in range are ordered in specific way. You can provide your own comparator.
 | is_sorted_until           | $m$                                       | Find the larges range in given range that is sorted. You can provide your own comparator.
@@ -742,23 +742,23 @@ std::transform_reduce(std::execution::unseq, begin(a), end(a), begin(b), 0, minu
 | lower_bound               | $\log_2(m)$                               | Find and return first element not smaller than given element in range. Work only on sorted range. You can provide your own comparator.
 | upper_bound               | $\log_2(m)$                               | Find and return first element bigger then given element in range. Work only on sorted range. You can provide your own comparator.
 | equal_range               | $2*\log_2(m)$                             | Find and return both upper and lower bonds
-| merge                     | -                                         |
-| inplace_merge             | -                                         |
-| includes                  | -                                         |
-| set_union                 | -                                         |
-| set_intersection          | -                                         |
-| set_symmetric_difference  | -                                         |
-| set_difference            | -                                         |
-| max                       | -                                         |
-| min                       | -                                         |
-| minmax                    | -                                         |
-| clang                     | -                                         |
-| max_element               | -                                         |
-| min_element               | -                                         |
-| minmax_element            | -                                         |
-| iota                      | -                                         |
-| reduce                    | -                                         |
-| inclusive_scan            | -                                         |
-| exclusive_scan            | -                                         |
-| adjacent_difference       | -                                         |
-| transform_reduce          | -                                         |
+| merge                     | $m$                                       | Get elements from first and second range and put them in the third.
+| inplace_merge             | $m-1$                                     | Sorts a range that is divided into two sorted sub ranges.
+| includes                  | $2*(m_1+m_2-1)$                           | Check whether all elements in the second range are in the first one.
+| set_union                 | $2*(m_1+m_2)-1$                           | Get elements from first and second range and put them in the third range without repetitions.
+| set_intersection          | $2*(m_1+m_2)-1$                           | Get elements that exist in both the first and second range and put them into the third range.
+| set_symmetric_difference  | $2*(m_1+m_2)-1$                           | Get elements from the first range that do not appear in the second as well as elements from the second range that do not appear in the first and put them into the third range. 
+| set_difference            | $2*(m_1+m_2)-1$                           | Get elements from the first range that do not appear in the second and put the into the third range.
+| max                       | $1$ <br /> $m-1$                          | Compare values and return the biggest value. 
+| min                       | $1$ <br /> $m-1$                          | Compare values and return the smallest value.
+| minmax                    | $1$                                       | Compare values and return both the biggest and the smallest element.
+| clamp                     | $1$                                       | Check whether the given number is within the given range, if so, return this number, if not, return the max or min value of the range depending on which way it exceeded the range.
+| max_element               | $m$                                       | Compare elements in the range and return the biggest element.
+| min_element               | $m$                                       | Compare elements in the range and return the smallest element.
+| minmax_element            | $m$                                       | Compare elements in the range and return the smallest and the biggest element.
+| iota                      | $m$                                       | Insert elements into the range starting from the given one and the next ones one larger.
+| reduce                    | $m*O$                                     | Using the given algorithm (default addition) and starting from the given element (default 0), execute the given algorithm on all elements in the range and return the result. 
+| inclusive_scan            | $m*O$                                     | Using the given algorithm (default addition) and starting from the given element (default 0), execute the given algorithm on subsequent elements in the first range and save the results to the second range.
+| exclusive_scan            | $m*O-1$                                   | Using the given algorithm (default addition) and starting from the given element (default 0), execute the given algorithm on subsequent elements in the first range and save the results to the second range starting with given element and ending before last element.
+| adjacent_difference       | $m*O-1$                                   | Execute the given function (default subtraction) on each pair of adjacent elements in the first range and write the results to the second range.
+| transform_reduce          | $m*O_1*O_2$                               | Execute $\sum^n_{i=1}(a_n*b_n)$ using given ranges (first and second) and result save to third range. You can change algorithm sum and product to another at your discretion. 

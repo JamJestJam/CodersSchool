@@ -23,6 +23,14 @@ Example of associative containers:
     - multiset
     - multimap
 
+## Non associative containers
+
+The container is non associative when the elements inside the container have their own hash code and are stored based on them.
+    - unordered_set
+    - unordered_map
+    - unordered_multiset
+    - unordered_multimap
+
 ## Container adaptors
 That container adopts sequence containers to a specific task for example to use in the FIFO queue.
 Example of adaptor containers:
@@ -41,17 +49,19 @@ p - complexity of algorithm
 
 Cache friendly - that means the container's data is arranged so that every element is near each other<br />
 Dynamic size - container can change its size<br />
-Stack - is container storage its element on stack<br />
 
-| Type          | Cache friendly    | Dynamic size  | Stack |
-| :---:         | :---:             | :---:         | :---: |
-| array         | yes               | no            | yes   |
-| vector        | yes               | yes           | no    |
-| list          | no                | yes           | no    |
-| forward_list  | no                | yes           | no    |
-| deque         | partial           | yes           | no    |
-|               |                   |               |       |
-|               |                   |               |       |
+| Type          | Cache friendly    | Dynamic size  | Description 
+| :---:         | :---:             | :---:         | :---:
+| array         | yes               | no            | Stores data in a permanent location in memory. It cannot be resized.
+| vector        | yes               | yes           | Stores data in a contiguous block of memory and uses pointers to manage it. Pointers to the beginning, end of the allocated block, and the end of the used area are stored on the stack. When the container scope is exceeded, the data is rewritten to a larger scope.
+| list          | no                | yes           | Stores data as objects. Items are stored as nodes with pointers to the previous and next items. A pointer to the first and last element is stored on the stack, which allows for quick additions to the beginning and end of the container.
+| forward_list  | no                | yes           | Stores data as objects. Items are stored as nodes with pointers to next items. A pointer to first element is stored on the stack, which allows for quick additions to the beginning. 
+| deque         | partial           | yes           | Stores data as a sequence of segments, where each segment is a small array. Stack pointers track the start and end of collections and the current positions within segments, allowing you to quickly access data at both ends of the collection and within segments. Due to this structure, deque allows you to efficiently add and remove elements at the front and back of the queue.
+| map           | no                | yes           | Stores data in the form of a key value object. The data is organized in the form of a binary tree. It is impossible to have two of the same keys in a container.
+| multimap      | no                | yes           | Stores data in the form of a key value object. The data is organized in the form of a binary tree. It is possible to have two of the same keys in a container. 
+|               |                   |               | 
+|               |                   |               | 
+|               |                   |               | 
 
 ### Function element access
 
@@ -67,6 +77,9 @@ Stack - is container storage its element on stack<br />
 | list          | ---           | O(1)      | O(1)      | ---   |
 | forward_list  | ---           | O(1)      | ---       | ---   |
 | deque         | O(1)          | O(1)      | O(1)      | O(1)  |
+| map           | O(Log(n)      | ---       | ---       | ---   |
+| multimap      | O(log(n)      | ---       | ---       | ---   |
+|               |               |           |           |       |
 |               |               |           |           |       |
 |               |               |           |           |       |
 
@@ -82,7 +95,10 @@ You can also use iterators with `c` before their name then the iterator is const
 | vector        | O(1)      | O(1)  | O(1)      | O(1)      |
 | list          | O(1)      | O(1)  | O(1)      | O(1)      |
 | forward_list  | O(1)      | O(1)  | ---       | ---       |
-| deque         | O(1)      | o(1)  | O(1)      | O(1)      |
+| deque         | O(1)      | O(1)  | O(1)      | O(1)      |
+| map           | O(1)      | O(1)  | O(1)      | O(1)      |
+| multimap      | O(1)      | O(1)  | O(1)      | O(1)      |
+|               |           |       |           |           |
 |               |           |       |           |           |
 |               |           |       |           |           |
 
@@ -102,6 +118,9 @@ You can also use iterators with `c` before their name then the iterator is const
 | list          | O(1)      | O(1)      | O(1)          | ---       | ---           | ---               |
 | forward_list  | O(1)      | ---       | O(1)          | ---       | ---           | ---               |
 | deque         | O(1)      | O(1)      | O(1)          | ---       | ---           | O(n)              |
+| map           | O(1)      | O(1)      | O(1)          | ---       | ---           | ---               |
+| multimap      | O(1)      | O(1)      | O(1)          | ---       | ---           | ---               |
+|               |           |           |               |           |               |                   |
 |               |           |           |               |           |               |                   |
 |               |           |           |               |           |               |                   |
 
@@ -114,8 +133,11 @@ You can also use iterators with `c` before their name then the iterator is const
 `insert_after` - insert an element after iterator<br /> 
 `insert_range` - insert elements in a specific place in the container<br />
 `insert_range_after` - insert elements after iterator<br />
+`insert_or_assign` - insert element into container, If inserted key exist then update value<br />
 `emplace` - insert element before specific place in container<br />
 `emplace_after` - insert an element after a specific place in the container<br />
+`emplace_hint` - insert an item into a container more efficiently<br />
+`try_emplace` - inert element into a container if key doesn't exist<br />
 `erase` - remove element from container<br />
 `erase_after` - remove element from container<br />
 `push_back` - add a new element on the end of the container<br />
@@ -128,16 +150,18 @@ You can also use iterators with `c` before their name then the iterator is const
 `pop_front` - remove first element<br />
 `resize` - change container size<br />
 
-| Type          | `fill`    | `swap`    | `clear`   | `insert`          | `insert_after` | `insert_range`    | `insert_range_after`  | `emplace` | `emplace_after`   | `erase`   | `erase_after` | `push_back`   | `push_front`  | `emplace_back`    | `emplace_front`   | `append_range`    | `prepend_range`   | `pop_back`    | `pop_front`   | `resize`  |
-| :---:         | :---:     | :---:     | :---:     | :---:             | :---:         | :---:             | :---:                 | :---:     | :---:             | :---:     | :---:         | :---:         | :---:         | :---:             | :---:             | :---:             | :---:             | :---:         | :---:         | :---:     |
-| array         | O(1)      | O(1)      | ---       | ---               | ---           | ---               | ---                   | ---       | ---               | ---       | ---           | ---           | ---           | ---               | ---               | ---               | ---               | ---           | ---           | ---       |
-| vector        | ---       | O(1)      | O(n)      | O(m) O(n)+O(m)    | ---           | O(m) O(n)+O(m)    | ---                   | O(n)      | ---               | O(n)      | ---           | O(1) O(n)     | ---           | O(1) O(n)         | ---               | O(m) O(n)+O(m)    | ---               | O(1)          | ---           | O(1) O(m) |
-| list          | ---       | O(1)      | O(n)      | O(m)              | ---           | O(m)              | ---                   | O(1)      | ---               | O(m)      | ---           | O(1)          | O(1)          | O(1)              | O(1)              | O(m)              | O(m)              | O(1)          | O(1)          | O(m)      |
-| forward_list  | ---       | O(1)      | O(n)      | ---               | O(m)          | ---               | O(m)                  | ---       | O(1)              | ---       | O(m)          | ---           | ---           | ---               | O(1)              | ---               | O(m)              | ---           | O(1)          | O(m)      |
-| deque         | ---       | O(1)      | O(n)      | O(m) O(n)+O(m)    | ---           | O(m) O(n)+O(m)    | ---                   | O(1)      | ---               | O(m)      | ---           | O(1)          | O(1)          | O(1)              | O(1)              | O(m)              | O(m)              | O(1)          | O(1)          | O(m)      |
-|               |           |           |           |                   |               |                   |                       |           |                   |           |               |               |               |                   |                   |                   |                   |               |               |           |
-|               |           |           |           |                   |               |                   |                       |           |                   |           |               |               |               |                   |                   |                   |                   |               |               |           |
-|               |           |           |           |                   |               |                   |                       |           |                   |           |               |               |               |                   |                   |                   |                   |               |               |           |
+| Type          | `fill`    | `swap`    | `clear`   | `insert`          | `insert_after` | `insert_range`    | `insert_range_after`  | `insert_or_assign` | `emplace` | `emplace_after`   | `emplace_hint`      | `try_emplace`         | `erase`     | `erase_after` | `push_back`   | `push_front`  | `emplace_back`    | `emplace_front`   | `append_range`    | `prepend_range`   | `pop_back`    | `pop_front`   | `resize`  |
+| :---:         | :---:     | :---:     | :---:     | :---:             | :---:          | :---:             | :---:                 |  :---:             | :---:     | :---:             | :---:               | :---:                 | :---:       | :---:         | :---:         | :---:         | :---:             | :---:             | :---:             | :---:             | :---:         | :---:         | :---:     |
+| array         | O(1)      | O(1)      | ---       | ---               | ---            | ---               | ---                   |  ---               | ---       | ---               | ---                 | ---                   | ---         | ---           | ---           | ---           | ---               | ---               | ---               | ---               | ---           | ---           | ---       |
+| vector        | ---       | O(1)      | O(n)      | O(m) O(n)+O(m)    | ---            | O(m) O(n)+O(m)    | ---                   |  ---               | O(n)      | ---               | ---                 | ---                   | O(n)        | ---           | O(1) O(n)     | ---           | O(1) O(n)         | ---               | O(m) O(n)+O(m)    | ---               | O(1)          | ---           | O(1) O(m) |
+| list          | ---       | O(1)      | O(n)      | O(m)              | ---            | O(m)              | ---                   |  ---               | O(1)      | ---               | ---                 | ---                   | O(m)        | ---           | O(1)          | O(1)          | O(1)              | O(1)              | O(m)              | O(m)              | O(1)          | O(1)          | O(m)      |
+| forward_list  | ---       | O(1)      | O(n)      | ---               | O(m)           | ---               | O(m)                  |  ---               | ---       | O(1)              | ---                 | ---                   | ---         | O(m)          | ---           | ---           | ---               | O(1)              | ---               | O(m)              | ---           | O(1)          | O(m)      |
+| deque         | ---       | O(1)      | O(n)      | O(m) O(n)+O(m)    | ---            | O(m) O(n)+O(m)    | ---                   |  ---               | O(1)      | ---               | ---                 | ---                   | O(m)        | ---           | O(1)          | O(1)          | O(1)              | O(1)              | O(m)              | O(m)              | O(1)          | O(1)          | O(m)      |
+| map           | ---       | O(1)      | O(n)      | O(log(n))         | ---            | O(m*log(n))       | ---                   |  O(log(n))         | O(log(n)) | ---               | O(1)<br />O(log(n)) | O(1)<br />O(log(n))   | O(log(m+n)) | ---           | ---           | ---           | ---               | ---               | ---               | ---               | ---           | ---           | ---       |
+| multimap      | ---       | O(1)      | O(n)      | O(log(n))         | ---            | O(m*log(n))       | ---                   |  O(log(n))         | O(log(n)) | ---               | O(1)<br />O(log(n)) | O(1)<br />O(log(n))   | O(log(m+n)) | ---           | ---           | ---           | ---               | ---               | ---               | ---               | ---           | ---           | ---       |
+|               |           |           |           |                   |                |                   |                       |                    |           |                   |                     |                       |             |               |               |               |                   |                   |                   |                   |               |               |           |
+|               |           |           |           |                   |                |                   |                       |                    |           |                   |                     |                       |             |               |               |               |                   |                   |                   |                   |               |               |           |
+|               |           |           |           |                   |                |                   |                       |                    |           |                   |                     |                       |             |               |               |               |                   |                   |                   |                   |               |               |           |
 
 ### Function operation
 
@@ -157,7 +181,8 @@ You can also use iterators with `c` before their name then the iterator is const
 | list          | O(n)+O(m) | O(1)      | ---               | O(n)      | O(n)*p        | O(n)      | O(n)      | O(n*log n)    |
 | forward_list  | O(n)+O(m) | ---       | O(1)              | O(n)      | O(n)*p        | O(n)      | O(n)      | O(n*log n)    |
 | deque         | ---       | ---       | ---               | ---       | ---           | ---       | ---       | ---           |
-|               |           |           |                   |           |               |           |           |               |
+| map           | ---       | ---       | ---               | ---       | ---           | ---       | ---       | ---           |
+| multimap      | ---       | ---       | ---               | ---       | ---           | ---       | ---       | ---           |
 |               |           |           |                   |           |               |           |           |               |
 |               |           |           |                   |           |               |           |           |               |
 |               |           |           |                   |           |               |           |           |               |

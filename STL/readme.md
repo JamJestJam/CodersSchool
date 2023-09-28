@@ -268,6 +268,58 @@ You can also use iterators with `c` before their name then the iterator is const
 | priority_queue    | $?$       | $?$       | $?$           | $?$       | $?$       | $?$
 |                   |           |           |               |           |           |
 
+# Streams
+
+Streams are a simple mechanism for transferring data between a program and a device or another program.
+
+We use streams by using operators `<<` to read and `>>` to write.
+
+Streams are divided into input, output, input-output and buffor stream for example
+
+Input streams are used to download data.
+Output streams are used to send data.
+Input-output streams can be used to send and download data.
+buffor streams are used to managmend buffors
+
+### input stream (istream)           
+`cin` - retrieves data from the default input.<br />
+`ifstream` - read data from file.<br />
+`istringstream` - read data from string.<br />
+
+### output stream (ostream)
+`cout`, `ceer`, `clog` - Send data to default output.<br />
+`ofstream` - writes data to file.<br />
+`ostringstream` - send data to string.<br />
+
+### input-output stream (iostream)
+`fstream` - Can save and write data to file.<br />
+`stringstream` - Can read and send data to string.<br />
+
+### buffor stream (streambuf)
+`stringbuf` - String managment buffer.<br />
+`filebuf` - File management buffer.<br />
+
+## File stream functions
+
+### Most used functions:
+`is_open` - check if file is open by any program.<br />
+`put` - write single char to file.<br />
+`get` - read single char from file.<br />
+`peek` - read single char from file and do not move pointer.<br />
+`write` - write single block of data to file.<br />
+`read` - read single block of data from file.<br />
+`seekp` - set pointer to designated location<br />
+`tellp` - get pointer location.<br />
+`getline()` - get data from file started from pointer ended to given char default `\n`.<br />
+
+### File open modes:
+`trunc` - delete everything from file.<br />
+`in` - read only.<br />
+`out` - write only.<br />
+`ate` - set pointer at the end of file.<br />
+`app` - write data at the end of file.<br />
+`binary` - read and write in binary mode.<br />
+
 # Lambda
 
 Lambda is a way to create a single-line function. For example:

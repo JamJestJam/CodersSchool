@@ -1,81 +1,89 @@
-# Standard Template Library
+# Standard Template Library (STL)
 
-This is the base functionality that comes with C++. You should always use it.
+The Standard Template Library is an essential part of C++. It's highly recommended to make use of its functionality.
 
 # Containers
 
 ## Sequence containers
 
-The container is sequenced when the elements are arranged in the order they were added to the container.
+Sequence containers maintain elements in the order they were added.
+
 Examples of sequence containers:
-    - array
-    - vector
-    - list
-    - forward_list
-    - deque
+- `array`
+- `vector`
+- `list`
+- `forward_list`
+- `deque`
 
 ## Associative containers
 
-The container is associative when the elements inside the container are ordered, and the computational complexity to find an element is O(log n).
-Example of associative containers:
-    - set
-    - map
-    - multiset
-    - multimap
+Associative containers maintain elements in order and have a complexity of $O(log(n))$ for element retrieval.
+
+Examples of associative containers:
+- `set`
+- `map`
+- `multiset`
+- `multimap`
 
 ## Non-associative containers
 
-The container is non-associative when the elements inside the container have their hash code and are stored based on them.
-    - unordered_set
-    - unordered_map
-    - unordered_multiset
-    - unordered_multimap
+Non-associative containers use hashing to storage elements.
+
+Examples of non-associative containers:
+- `unordered_set`
+- `unordered_map`
+- `unordered_multiset`
+- `unordered_multimap`
 
 ## Container adaptors
-That container adopts sequence containers to a specific task for example to use in the FIFO queue.
-Example of adaptor containers:
-    - stack
-    - queue
-    - priority_queue 
 
-### Base info
+Container adaptors modify containers to serve specific tasks, such as a FIFO queue.
 
-O(1) - complexity constant
-O(x) - complexity linear depends on x
-O(log x) - complexity logarithmic depends on x
-n - size of container
-m - the size of the range
-p - complexity of algorithm
+Examples of adaptor containers:
+- `stack`
+- `queue`
+- `priority_queue` 
 
-Cache friendly - that means the container's data is arranged so that every element is near each other<br />
-Dynamic size - container can change its size<br />
+### Key terminology
+
+- $O(1)$ - Constant time complexity.
+- $O(n)$ - Linear time complexity.
+- $O(log n)$ - Logarithmic time complexity.
+- $n$ - Size of the container.
+- $m$ - Size of the range.
+- $p$ - Complexity of the algorithm.
+
+#### Additional Definitions:
+
+- Cache friendly - This means the container's data is arranged such that each element is located close to others in memory.
+- Dynamic size - This means that containers can change in size
 
 | Type               | Cache friendly    | Dynamic size  | Description 
 | :---:              | :---:             | :---:         | :---:
-| array              | yes               | no            | Stores data in a permanent location in memory. It cannot be resized.
-| vector             | yes               | yes           | Stores data in a contiguous block of memory and uses pointers to manage it. Pointers to the beginning, end of the allocated block, and the end of the used area are stored on the stack. When the container scope is exceeded, the data is rewritten to a larger scope.
-| list               | no                | yes           | Elements in the container are stored as nodes with pointers to the previous and next items. A pointer to the first and last element is stored on the stack, which allows for quick additions to the beginning and end of the container.
-| forward_list       | no                | yes           | Elements in the container are stored as nodes with pointers to the next items. A pointer to the first element is stored on the stack, which allows for quick additions to the beginning. 
-| deque              | partial           | yes           | Stores data as a sequence of segments, where each segment is a small array. Stack pointers track the start and end of collections and the current positions within segments, allowing you to quickly access data at both ends of the collection and within segments. Due to this structure, deque allows you to efficiently add and remove elements at the front and back of the queue.
-| map                | no                | yes           | Stores data in the form of a key-value object. The data is organized in the form of a binary tree. It is impossible to have two of the same keys in a container.
-| multimap           | no                | yes           | Stores data in the form of a key-value object. The data is organized in the form of a binary tree. It is possible to have two or more of the same keys in a container. 
-| set                | no                | yes           | Elements are organized in the form of a binary tree. It is impossible to have two of the same records in the container.
-| multiset           | no                | yes           | Elements are organized in the form of a binary tree. It is possible to have multiple of the same records in the container.
-| unordered_map      | no                | yes           | Stores data in the form of a key-value object. The data is organized in the form of a hash table. Every element in the container created is hash and based on this element is stored in a designated place. It is impossible to have two of the same keys in a container.
-| unordered_multimap | no                | yes           | Stores data in the form of a key-value object. The data is organized in the form of a hash table. Every element in the container created is hash and based on this element is stored in a designated place. It is possible to have two or more of the same keys in a container.
-| unordered_set      | no                | yes           | Elements are organized in the form of a hash table. Every element in the container created is hash and based on this element is stored in the designated place. It is impossible to have two of the same records in container
-| unordered_multiset | no                | yes           | Elements are organized in the form of a hash table. Every element in the container created is hash and based on this element is stored in the designated place. It is possible to have two or more of the same records in container
-| stack              | depends           | yes           | This container storage data in LIFO(last in first out) structure. It uses by default deque behind but you can change it.
-| queue              | depends           | yes           | This container storage data in FIFO(first in first out) structure. It uses by default deque behind but you can change it.
-| priority_queue     | depends           | yes           | This container stores data in an ordered structure. You can specify the way it's ordered. It uses by default vector behind but you can change it.
+| array              | yes               | no            | Stores data in a fixed memory location.<br /> cannot be resized.
+| vector             | yes               | yes           | It organizes data efficiently by storing it within a continuous block of memory, managing access through pointers. These pointers, denoting the start, end of the allocated block, and the end of the utilized section, are stored on the stack. If the container's capacity is surpassed, the data is intelligently relocated to a larger memory allocation.
+| list               | no                | yes           | Within this container, elements are stored as nodes, each equipped with pointers referencing the preceding and succeeding items. On the stack, pointers to both the first and last elements are retained, enabling swift insertions at both the front and rear of the container.
+| forward_list       | no                | yes           | In this container, elements are represented as nodes, with pointers directed to the next items in the sequence. A pointer to the first element is maintained on the stack, facilitating rapid insertions at the container's outset.
+| deque              | partial           | yes           | The data is organized in this structure as a series of segments, with each segment functioning as a compact array. Stack pointers are employed to keep tabs on the commencement and conclusion of these collections, as well as the current positions within individual segments. This configuration empowers swift data access at both extremities of the collection and within the segments themselves. Thanks to this design, the deque efficiently accommodates the addition and removal of elements at both the front and back of the queue.
+| map                | no                | yes           | Data is structured within this container using a key-value paradigm, organized into a binary tree format. Crucially, it ensures that identical keys cannot coexist within the container.
+| multimap           | no                | yes           | Data is structured within this container using a key-value paradigm, organized into a binary tree format.
+| set                | no                | yes           | Elements are organized in the form of a binary tree, and no two identical records can coexist within the container
+| multiset           | no                | yes           | Elements are organized in the form of a binary tree.
+| unordered_map      | no                | yes           | Data is organized within this container using a key-value structure, which is implemented as a hash table. Each element placed into the container is hashed, determining its designated storage location. Crucially, it enforces the constraint that no two identical keys can exist simultaneously within the container.
+| unordered_multimap | no                | yes           | Data is organized within this container using a key-value structure, which is implemented as a hash table. Each element placed into the container is hashed, determining its designated storage location.
+| unordered_set      | no                | yes           | Within this container, elements are structured using a hash table format. Each element undergoes hashing, determining its designated storage location. Importantly, this container ensures that no two identical records can coexist within it.
+| unordered_multiset | no                | yes           | Within this container, elements are structured using a hash table format. Each element undergoes hashing, determining its designated storage location.
+| stack              | depends           | yes           | This container employs a Last-In-First-Out (LIFO) structure for data storage. It typically uses a deque as its default implementation, but it allows for customization and substitution with other data structures as needed.
+| queue              | depends           | yes           | This container employs a First-In-First-Out (FIFO) structure for data storage. It typically uses a deque as its default implementation, but it allows for customization and substitution with other data structures as needed.
+| priority_queue     | depends           | yes           | This container organizes data within an ordered structure, and the order can be customized to your specific preferences. By default, it employs a vector as its underlying implementation, but you have the flexibility to alter or replace it with other data structures as needed.
 |                    |                   |               | 
 
 ### Function element access
 
-`operator[]` - This allows you to access the data using the [] operator by typing the data key inside<br />
-`front` - it gives the first element in the container<br />
-`back` - it gives the last element in the container<br />
-`at` - get element by its position in container<br />
+- `operator[]` - This allows you to access data using the `[]` operator by specifying the data key inside.
+- `front` -  It retrieves the first element in the container
+- `back` - It retrieves the last element in the container.
+- `at` - You can obtain an element by specifying its position within the container.
 
 | Type               | `operator[]`         | `front`   | `back`    | `at`       
 | :---:              | :---:                | :---:     | :---:     | :---:     
@@ -98,10 +106,13 @@ Dynamic size - container can change its size<br />
 |                    |                      |           |           |
 
 ### Function iterators
-`end` - get the last iterator<br />
-`rbegin` - get first reverse iterator<br />
-`rend` - get last reverse iterator<br />
-You can also use iterators with `c` before their name then the iterator is constant
+
+- `begin`- It retrieves the first iterator.
+- `end` -  It retrieves the last iterator.
+- `rbegin` - This function provides the first reverse iterator
+- `rend` - This function provides the last reverse iterator
+
+Moreover, if you prefix these iterator functions with 'c', you can create constant iterators, which prevent modification of the container's data through those iterators.
 
 | Type               | `begin`   | `end`     | `rbegin`  | `rend`    |
 | :---:              | :---:     | :---:     | :---:     | :---:     |
@@ -125,12 +136,12 @@ You can also use iterators with `c` before their name then the iterator is const
 
 ### Function capacity
 
-`empty` - check if the container is empty<br />
-`size` - check container's size<br />
-`max_size` - check container max possible size<br />
-`reserve` - reserve space needed to store more elements<br />
-`capacity` - show container allocated size<br />
-`shrink_to_fit` - shrink the allocated size to elements size<br />
+- `empty` - Checks whether the container is empty.
+- `size` - Returns the current size (number of elements) in the container.
+- `max_size` - Provides the maximum possible size the container can reach.
+- `reserve` - Reserves memory space to accommodate more elements, helping to reduce reallocations.
+- `capacity` - Shows the currently allocated size of the container.
+- `shrink_to_fit` - Shrinks the allocated memory size to match the actual size of the elements in the container, optimizing memory usage.
 
 | Type               | `empty`   | `size`    | `max_size`    | `reserve` | `capacity`    | `shrink_to_fit`   |
 | :---:              | :---:     | :---:     | :---:         | :---:     | :---:         | :---:             |
@@ -154,29 +165,29 @@ You can also use iterators with `c` before their name then the iterator is const
 
 ### Function modifiers
 
-`fill` - assign container's values<br />
-`swap` - change container's elements<br />
-`clear` - clear container's value<br />
-`insert` - insert an element in a specific place in the container<br />
-`insert_after` - insert an element after iterator<br /> 
-`insert_range` - insert elements in a specific place in the container<br />
-`insert_range_after` - insert elements after iterator<br />
-`insert_or_assign` - insert the element into the container, If the inserted key exists then update value<br />
-`emplace` - insert element before specific place in container<br />
-`emplace_after` - insert an element after a specific place in the container<br />
-`emplace_hint` - insert an item into a container more efficiently<br />
-`try_emplace` - inert element into a container if key doesn't exist<br />
-`erase` - remove element from container<br />
-`erase_after` - remove element from container<br />
-`push_back` - add a new element on the end of the container<br />
-`push_front` - insert element on the beginning of the container<br />
-`emplace_back` - create a new element and insert it to the end of the container<br />
-`emplace_front` - Create a new element and insert it into the beginning of the container<br />
-`append_range` - add elements on the end of the container<br />
-`prepend_range` - add elements at the beginning of the container<br />
-`pop_back` - remove last element<br />
-`pop_front` - remove first element<br />
-`resize` - change container size<br />
+- `fill` - Assign values to the container's elements.
+- `swap` - Exchange the elements of two containers.
+- `clear` - clear container's value
+- `insert` - Insert an element at a specific position in the container.
+- `insert_after` - Insert an element after a specified iterator.
+- `insert_range` - Insert a range of elements at a specific position in the container.
+- `insert_range_after` - Insert a range of elements after a specified iterator.
+- `insert_or_assign` - Insert an element into the container or update its value if the key already exists.
+- `emplace` - Create an element and insert it before a specific position in the container.
+- `emplace_after` - Create an element and insert it after a specific position in the container.
+- `emplace_hint` - Efficiently create and insert an item into the container with a hint.
+- `try_emplace` - Create and insert an element into the container only if the key doesn't already exist.
+- `erase` - Remove an element from the container.
+- `erase_after` - Remove an elements following a specified range.
+- `push_back` - Insert an element at the end of the container.
+- `push_front` - Insert an element at the beginning of the container.
+- `emplace_back` - Create a new element and insert it at the end of the container.
+- `emplace_front` - Create a new element and insert it at the beginning of the container.
+- `append_range` - Insert elements copy to the end of the container from a range.
+- `prepend_range` - Insert elements copy to the begining of the container from a range.
+- `pop_back` -  Remove the last element from the container.
+- `pop_front` - Remove the first element from the container.
+- `resize` - Change the size of the container.
 
 | Type               | `fill`    | `swap`    | `clear`   | `insert`             | `insert_after` | `___insert_range___`         | `insert_range_after`  | `insert_or_assign` | `emplace`            | `emplace_after`   | `emplace_hint`            | `try_emplace`             | `____erase____` | `erase_after` | `push_back`   | `push_front`  | `emplace_back`    | `emplace_front`   | `append_range`            | `prepend_range`   | `pop_back`    | `pop_front`   | `resize`  
 | :---:              | :---:     | :---:     | :---:     | :---:                | :---:          | :---:                        | :---:                 | :---:              | :---:                | :---:             | :---:                     | :---:                     | :---:           | :---:         | :---:         | :---:         | :---:             | :---:             | :---:                     | :---:             | :---:         | :---:         | :---:     
@@ -197,14 +208,14 @@ You can also use iterators with `c` before their name then the iterator is const
 
 ### Function operation
 
-`merge` - merge two sorted containers<br />
-`splice` - get data from the first container and transfer it to another<br />
-`splice_after` - get data from the first container and transfer it to another<br />
-`remove` - remove elements that are equal to the parameter<br />
-`remove_if` - remove elements that meet the condition<br />
-`reverse` - reverse the order of the elements<br />
-`unique` - remove duplicated elements<br />
-`sort` - sort container
+- `merge` - Merge two sorted containers.
+- `splice` - Transfer data from the first container to another.
+- `splice_after` - Transfer data from the first container to another.
+- `remove` - Remove elements equal to a specified parameter.
+- `remove_if` - Remove elements that meet a specified condition.
+- `reverse` - Reverse the order of elements in the container.
+- `unique` - Remove duplicated elements in the container.
+- `sort` - Sort the container.
 
 | Type          | `_____merge_____` | `splice`  | `splice_after`    | `remove`  | `remove_if`   | `reverse` | `unique`  | `____sort____`
 | :---:         | :---:             | :---:     | :---:             | :---:     | :---:         | :---:     | :---:     | :---:         
@@ -214,12 +225,12 @@ You can also use iterators with `c` before their name then the iterator is const
 
 ### Lookup functions
 
-`count` - returns the number of elements in a container that satisfy the predicate.<br />
-`find` - finds elements with key equals to the given value.<br />
-`contains` - check if elements with that key exist in the container.<br />
-`equal_range` - Find and return both upper and lower bonds.<br />
-`lower_bound` - Find and return the first element not smaller than the given element in the range. Work only on sorted range. You can provide your comparator.<br />
-`upper_bound` - Find and return the first element bigger than the given element in the range. Work only on sorted range. You can provide your comparator.<br />
+- `count` - Returns the number of elements in a container that satisfy the predicate.
+- `find` - Finds elements with keys equal to the given value.
+- `contains` - Checks if elements with a specific key exist in the container.
+- `equal_range` - Finds and returns both the upper and lower bounds.
+    - `lower_bound` -  Finds and returns the first element not smaller than the given element in the range. This works only on sorted ranges, and you can provide your own comparator.
+    - `upper_bound` - Finds and returns the first element bigger than the given element in the range. This also works only on sorted ranges, and you can provide your own comparator.
 
 | Type                  | `____count____`       | `___find___`          | `contains`            | `equal_range`         | `lower_bound` | `upper_bound`
 | :---:                 | :---:                 | :---:                 | :---:                 | :---:                 | :---:         | :---:
@@ -235,14 +246,14 @@ You can also use iterators with `c` before their name then the iterator is const
 
 ### Hash function
 
-`bucket_count` - returns the number of buckets in the container.<br />
-`max_bucket_count` - returns the maximum number of buckets<br />
-`bucket_size` - return the number of elements in a specific bucket<br />
-`bucket` - get value and return the ID of the bucket it should be stored<br />
-`load_factor` - returns the average number of elements inside buckets in a given container<br />
-`max_load_factor` - return or set maximum load factor(if factor overload then increase number of buckets)<br />
-`rehash` - set the number of buckets in container(count can be bigger)<br />
-`reserve` - set the number of buckets to $count / max_load_factor$<br />
+- `bucket_count` - Returns the number of buckets in the container.
+- `max_bucket_count` -  Returns the maximum number of buckets that can be allocated.
+- `bucket_size` - Returns the number of elements in a specific bucket.
+- `bucket` - Retrieves a value and returns the ID of the bucket where it should be stored.
+- `load_factor` - Returns the average number of elements inside buckets in a given container.
+- `max_load_factor` -  Returns or sets the maximum load factor (if the factor is exceeded, it increases the number of buckets).
+- `rehash` - Sets the number of buckets in the container (the count can be larger).
+- `reserve` - Sets the number of buckets to optimize for a given load factor.
 
 | Type                  | `bucket_count`        | `max_bucket_count`    | `bucket_size`             | `bucket`              | `load_factor`         | `max_load_factor`     | `rehash`                  | `reserve`
 | :---:                 | :---:                 | :---:                 | :---:                     | :---:                 | :---:                 | :---:                 | :---:                     | :---:
@@ -254,12 +265,12 @@ You can also use iterators with `c` before their name then the iterator is const
 
 ### Queue functions
 
-`top` - get access to the last element in the queue
-`push` - add element to queue
-`push_range` - add multiple elements to queue
-`emplace` - construct an element and add it to the queue
-`pop` - remove the last element in the queue
-`swap` - change container elements
+- `top` - Retrieve access to the last element in the queue.
+- `push` - Add an element to the queue.
+- `push_range` - Add multiple elements to the queue.
+- `emplace` - Construct an element and add it to the queue.
+- `pop` - Remove the last element in the queue.
+- `swap` -  Exchange elements of the container.
 
 | Type              | `top`     | `push`    | `push_range`  | `emplace` | `pop`     | `swap`    
 | :---:             | :---:     | :---:     | :---:         | :---:     | :---:     | :---:
@@ -270,55 +281,54 @@ You can also use iterators with `c` before their name then the iterator is const
 
 # Streams
 
-Streams are a simple mechanism for transferring data between a program and a device or another program.
+Streams serve as a straightforward means for moving data between a program and external entities or other software components.
 
-We use streams by using operators `<<` to read and `>>` to write.
+We interact with streams by employing the << operator for reading and the >> operator for writing data.
 
-Streams are divided into input, output, input-output, and buffer streams for example
-
-Input streams are used to download data.
-Output streams are used to send data.
-Input-output streams can be used to send and download data.
-buffer streams are used to manage buffers
+Streams can be categorized into different types, including input streams, output streams, input-output streams, and buffer streams:
+- Input streams are employed for retrieving data from external sources.
+- Output streams are utilized to transmit data to external destinations.
+- Input-output streams facilitate both sending and receiving data.
+- Buffer streams are responsible for managing buffers, enhancing the efficiency of data transfer and processing.
 
 ### input stream (istream)           
-`cin` - retrieves data from the default input.<br />
-`ifstream` - read data from a file.<br />
-`istringstream` - read data from string.<br />
+- `cin` - Retrieves data from the default input.
+- `ifstream` - Reads data from a file.
+- `istringstream` - Reads data from a string.
 
 ### output stream (ostream)
-`cout`, `ceer`, `clog` - Send data to the default output.<br />
-`ofstream` - writes data to file.<br />
-`ostringstream` - send data to string.<br />
+- `cout`, `ceer`, `clog` - Sends data to the default output.
+- `ofstream` - Writes data to a file.
+- `ostringstream` - Sends data to a string.
 
 ### input-output stream (iostream)
-`fstream` - Can save and write data to a file.<br />
-`stringstream` - Can read and send data to a string.<br />
+- `fstream` - Can both save and read data to/from a file.
+- `stringstream` - Can both read and send data to a string.
 
 ### buffor stream (streambuf)
-`stringbuf` - String managment buffer.<br />
-`filebuf` - File management buffer.<br />
+- `stringbuf` - String management buffer.
+- `filebuf` - File management buffer.
 
 ## File stream functions
 
 ### Most used functions:
-`is_open` - check if the file is open by any program.<br />
-`put` - write single char to file.<br />
-`get` - read a single char from the file.<br />
-`peek` - read a single char from the file and do not move the pointer.<br />
-`write` - write a single block of data to a file.<br />
-`read` - read a single block of data from a file.<br />
-`seekp` - set pointer to designated location<br />
-`tellp` - get pointer location.<br />
-`getline()` - get data from file started from pointer ended to given char default `\n`.<br />
+- `is_open` - Checks if the file is open by program.
+- `put` - Writes a single character to the file.
+- `get` - Reads a single character from the file.
+- `peek` - Reads a single character from the file without moving the pointer.
+- `write` - Writes a single block of data to a file.
+- `read` - Reads a single block of data from a file.om a file.
+- `seekp` - Sets the pointer to a designated location.
+- `tellp` - Gets the current pointer location.
+- `getline()` - Retrieves data from the file, starting from the pointer and ending at the specified character (default is '\n').
 
 ### File open modes:
-`trunc` - delete everything from file.<br />
-`in` - read-only.<br />
-`out` - write-only.<br />
-`ate` - set pointer at the end of the file.<br />
-`app` - write data at the end of the file.<br />
-`binary` - read and write in binary mode.<br />
+- `trunc` - Deletes all content from the file.
+- `in` - Sets the file stream to read-only mode.
+- `out` - Sets the file stream to write-only mode.
+- `ate` - Sets the file pointer to the end of the file.
+- `app` - Appends data at the end of the file.
+- `binary` - Enables reading and writing in binary mode.
 
 ### Example
 
@@ -887,8 +897,8 @@ std::transform_reduce(std::execution::unseq, begin(a), end(a), begin(b), 0, minu
 
 `O` - procedure complexity
 
-| Algorithm                 | Worst_possible_complexity                 | Description 
-| ---                       | :---:                                     | ---         
+| Algorithm                 | Worst_possible_complexity                    | Description 
+| ---                       | :---:                                        | ---         
 | all_of                    | $O(O*m)$                                     | Checks whether all elements in the range satisfy the predicate. 
 | any_f                     | $O(O*m)$                                     | Checks if any of the elements in the range satisfies the predicate
 | none_of                   | $O(O*m)$                                     | Checks that all elements in the range do not satisfy the predicate
@@ -897,11 +907,11 @@ std::transform_reduce(std::execution::unseq, begin(a), end(a), begin(b), 0, minu
 | find                      | $O(m)$                                       | Finds the first element in the range that is equal to the given value and returns an iterator to it. If not found return end iterator.
 | find_if                   | $O(O*m)$                                     | Finds the first element in the range that satisfies the predicate and returns an iterator to it. If not found return end iterator.
 | find_if_not               | $O(O*m)$                                     | Finds the first element in the range that does not satisfy the predicate and returns an iterator to it. If not found return end iterator.
-| find_first_of             | $O(m)$ <br /> $O(O*m)$                          | Finds the first element in the first range that is also in the second range and returns an iterator to it. You can use the predicate to compare elements. If not found return end iterator.
-| adjacent_find             | $O(m)$ <br /> $O(O*m)$                          | Finds the first occurrence of two same elements in the range next to each other and returns the iterator to the first of it. You can use the predicate to compare elements. If not found return end iterator.
-| search                    | $O(m_1*m_2)$ <br /> $O(O*m_1*m_2)$              | Finds the first occurrence of all the elements contained in the second range in the correct order in the first range and returns the iterator to where it started. You can use the predicate to compare elements. If not found return end iterator.
-| search_n                  | $O(m)$ <br /> $O(O*m)$                          | Finds the given number of the given value each next to each other in the range. You can use the predicate to compare elements. If not found return end iterator.
-| find_end                  | $O(m_1-m_2+1)$ <br /> $O(O*(m_1-m_2+1))$        | Finds the last occurrence of all the elements contained in the second range in the correct order in the first range and return the iterator to where it started. You can use the predicate to compare elements. If not found return end iterator.
+| find_first_of             | $O(m)$ <br /> $O(O*m)$                       | Finds the first element in the first range that is also in the second range and returns an iterator to it. You can use the predicate to compare elements. If not found return end iterator.
+| adjacent_find             | $O(m)$ <br /> $O(O*m)$                       | Finds the first occurrence of two same elements in the range next to each other and returns the iterator to the first of it. You can use the predicate to compare elements. If not found return end iterator.
+| search                    | $O(m_1*m_2)$ <br /> $O(O*m_1*m_2)$           | Finds the first occurrence of all the elements contained in the second range in the correct order in the first range and returns the iterator to where it started. You can use the predicate to compare elements. If not found return end iterator.
+| search_n                  | $O(m)$ <br /> $O(O*m)$                       | Finds the given number of the given value each next to each other in the range. You can use the predicate to compare elements. If not found return end iterator.
+| find_end                  | $O(m_1-m_2+1)$ <br /> $O(O*(m_1-m_2+1))$     | Finds the last occurrence of all the elements contained in the second range in the correct order in the first range and return the iterator to where it started. You can use the predicate to compare elements. If not found return end iterator.
 | mismatch                  | $O(m)$                                       | Compare both ranges and find the first item in both ranges where the values are not equal and return iterators to elements in both ranges. You can use the predicate to compare elements. If not found return end iterator.
 | for_each                  | $O(m)$                                       | Executes the given procedure using the elements in the range.
 | copy                      | $O(m)$                                       | Copy elements from first range to second range.
@@ -917,8 +927,8 @@ std::transform_reduce(std::execution::unseq, begin(a), end(a), begin(b), 0, minu
 | remove_if                 | $O(O*m)$                                     | Remove all elements that satisfy the predicate in range and return the iterator to the last element. There may be unused data after the last item and you should erase them.
 | remove_copy               | $O(m)$                                       | Remove all elements that are equal to the given value in the first range and save the result to the second range. 
 | remove_copy_if            | $O(O*m)$                                     | Remove all elements that satisfy the predicate in the first range and save the result to the second range. 
-| unique                    | $O(m)$ <br /> $O(O*m)$                          | Remove duplicated elements from the range and return the iterator to the last element. You can use the predicate to compare elements. There may be unused data after the last item and you should erase them
-| unique_copy               | $O(m)$ <br /> $O(O*m)$                          | Remove duplicated elements from the first range and save the result to the second range. You can use the predicate to compare elements.
+| unique                    | $O(m)$ <br /> $O(O*m)$                       | Remove duplicated elements from the range and return the iterator to the last element. You can use the predicate to compare elements. There may be unused data after the last item and you should erase them
+| unique_copy               | $O(m)$ <br /> $O(O*m)$                       | Remove duplicated elements from the first range and save the result to the second range. You can use the predicate to compare elements.
 | fill                      | $O(m)$                                       | Change the value of all elements to the given value in the range.
 | fill_n                    | $O(n)$                                       | Change the value of the given number of elements to the given value in the range.
 | replace                   | $O(m)$                                       | Replace all elements that are equal to the given element with the given value in the range.
@@ -957,8 +967,8 @@ std::transform_reduce(std::execution::unseq, begin(a), end(a), begin(b), 0, minu
 | set_intersection          | $O(2*(m_1+m_2)-1)$                           | Get elements that exist in both the first and second range and put them into the third range.
 | set_symmetric_difference  | $O(2*(m_1+m_2)-1)$                           | Get elements from the first range that do not appear in the second as well as elements from the second range that do not appear in the first and put them into the third range. 
 | set_difference            | $O(2*(m_1+m_2)-1)$                           | Get elements from the first range that do not appear in the second and put them into the third range.
-| max                       | $O(1)$ <br /> $O(m-1)$                          | Compare values and return the biggest value. 
-| min                       | $O(1)$ <br /> $O(m-1)$                          | Compare values and return the smallest value.
+| max                       | $O(1)$ <br /> $O(m-1)$                       | Compare values and return the biggest value. 
+| min                       | $O(1)$ <br /> $O(m-1)$                       | Compare values and return the smallest value.
 | minmax                    | $O(1)$                                       | Compare values and return both the biggest and the smallest element.
 | clamp                     | $O(1)$                                       | Check whether the given number is within the given range, if so, return this number, if not, return the max or min value of the range depending on which way it exceeded the range.
 | max_element               | $O(m)$                                       | Compare elements in the range and return the biggest element.

@@ -1,0 +1,1 @@
+unsigned Factorial(unsigned number);

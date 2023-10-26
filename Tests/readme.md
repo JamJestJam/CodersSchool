@@ -34,33 +34,17 @@ SCENARIO("test description", "[test_tags]"){
 
 ## Assertion
 
-```
-// check whether the expresion is met, if not, do not check further
-REQUIRE(a == b);
-// check whether the expresion is met even if you do not perform further checks
-CHECK(a == b);
-
-// works as above but denies the expresion
-REQUIRE_FALSE(a == b);
-CHECK_FALSE(a == b);
-
-// check if expresion throw a error
-REQUIRE_THROW_AS(fun(), exception);
-CHECK_THROW_AS(fun(), exception);
-
-// check if expresion do not throw a error
-REQUIRE_NOTHROW(fun);
-CHECK_NOTHROW(fun);
-
-//check expresion using custom matcher
-REQUIRE_THAT(a, matcher);
-CHECK_THAT(a, matcher);
-```
+| Braking assertion | Not braking assertion | Description 
+| ---               | ---                   | ---
+| REQUIRE           | CHECK                 | Check whether the expression is met
+| REQUIRE_FALSE     | CHECK_FALSE           | Check whether the expression is not met
+| REQUIRE_THROW_AS  | CHECK_THROW_AS        | check if expression throw a exception
+| REQUIRE_NOTHROW   | CHECK_NOTHROW         | check if expression do not throw a exception
+| REQUIRE_THAT      | CHECK_THAT            | check expression using custom matcher
 
 ## Matchers
 
 ```
-// string matches
 StartsWith() // check if string start with argument
 EndsWith() // check if string end with argument
 ContainsSubstring() // check if string contain argument
@@ -82,7 +66,33 @@ GENERATE(value1, value2, value3);
 # Create test
 
 ```
-TEST(name, idk){
-    //test body
+TEST(TestedObjectName, TestName){
+    //Test body
+}
+
+struct DataEnableToMultipleTests : public ::testing::Test {
+    //initialize data
+}
+
+TEST_F(StructName, TestName){
+    //Test body
 }
 ```
+
+## Assertion
+
+| Braking assertion                         | Not braking assertion                     | Description
+| ---                                       | ---                                       | ---
+| ASSERT_TRUE(condition);	                | EXPECT_TRUE(condition);	                | Check if condition is true
+| ASSERT_FALSE(condition);	                | EXPECT_FALSE(condition);	                | Check if condition is false
+| ASSERT_EQ(val1, val2);	                | EXPECT_EQ(val1, val2);	                | Check if val1 and val2 are equal
+| ASSERT_NE(val1, val2);	                | EXPECT_NE(val1, val2);	                | Check if val1 and val2 are not equal
+| ASSERT_LT(val1, val2);	                | EXPECT_LT(val1, val2);	                | Check if val1 is smaller then val2
+| ASSERT_LE(val1, val2);	                | EXPECT_LE(val1, val2);	                | Check if val1 is smaller or equal val2
+| ASSERT_GT(val1, val2);	                | EXPECT_GT(val1, val2);	                | Check if val1 is bigger then val2
+| ASSERT_GE(val1, val2);	                | EXPECT_GE(val1, val2);	                | check if val1 is bigger or equal val2
+| ASSERT_THAT(value, matcher);	            | EXPECT_THAT(value, matcher);	            | value matches matcher
+| ASSERT_THROW(statement, exception_type);  | EXPECT_THROW(statement, exception_type);  | throws an exception of the given type
+| ASSERT_ANY_THROW(statement);	            | EXPECT_ANY_THROW(statement);	            | throws an exception of any type
+| ASSERT_NO_THROW(statement);	            | EXPECT_NO_THROW(statement);	            | doesn't throw any exception
+

@@ -1,7 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include <catch2/catch_all.hpp>
 #include <exception>
-#include <iostream>
 #include <vector>
 #include "Factorial.hpp"
 
@@ -52,8 +51,7 @@ TEST_CASE("Test different type of assertion", "[useless_test]"){
     CHECK_NOTHROW(a());
     REQUIRE_THROWS_AS(b(), std::out_of_range);
   }
-  SECTION("MATCH"){
-    
+  SECTION("MATCH"){ 
     using Catch::Matchers::StartsWith;
     auto str = "You don't have to ask where is your god because its right there";
     auto regex = "^You.*there$";
